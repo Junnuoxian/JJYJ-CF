@@ -4,6 +4,8 @@
     "pages/menu/menu",
     "pages/order/order",
     "pages/history/history",
+    "pages/my/my",
+    "pages/search/search",
     "pages/recipe/recipe"
   ],
   "window": {
@@ -20,15 +22,19 @@
     "list": [
       {
         "pagePath": "pages/menu/menu",
-        "text": "点菜"
+        "text": "点单"
       },
       {
         "pagePath": "pages/order/order",
-        "text": "当前"
+        "text": "后厨"
       },
       {
         "pagePath": "pages/history/history",
-        "text": "历史"
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
       }
     ]
   },

@@ -1,0 +1,46 @@
+<view class="search-page container">
+  <view class="search-bar">
+    <input 
+      class="search-input" 
+      placeholder="想吃什么？直接搜！" 
+      bindinput="onInput"
+      bindconfirm="doSearch"
+      value="{{keyword}}"
+      focus
+    />
+    <view class="search-btn" bindtap="doSearch">搜索</view>
+  </view>
+
+  <view class="result-area">
+    <view wx:if="{{!hasSearched}}" class="empty-tip">
+      <text class="tip-icon">🔮</text>
+      <text>输入菜名，我会去全网帮你找菜谱哦~</text>
+    </view>
+
+    <!-- 搜索到了 -->
+    <view class="search-result" wx:if="{{hasSearched && searchResult}}">
+      <view class="result-title">找到啦！要把它加入你们的菜单吗？</view>
+      <view class="dish-card kuromi-card">
+        <view class="d-name">{{searchResult.name}}</view>
+        <view class="d-cat">分类：{{searchResult.category}}</view>
+        <view class="d-ing">食材：{{searchResult.ingredients}}</view>
+        <button class="add-to-menu-btn" bindtap="addToMyMenu">加入专属菜单</button>
+      </view>
+    </view>
+
+    <!-- 没搜索到 (兜底) -->
+    <view class="not-found" wx:if="{{hasSearched && !searchResult}}">
+      <view class="not-found-text">呜呜，没找到这道菜 (；′⌒`)</view>
+      
+      <view class="manual-form kuromi-card">
+        <view class="form-title">直接手动录入吧！</view>
+        <input class="form-input" placeholder="菜名 (例如: 黯然销魂饭)" value="{{manualName}}" bindinput="onManualName"/>
+        <picker class="form-picker" bindchange="onCategoryChange" value="{{catIndex}}" range="{{categories}}">
+          <view class="picker-text">分类: {{categories[catIndex]}}</view>
+        </picker>
+        <input class="form-input" placeholder="所需食材 (用逗号隔开)" value="{{manualIngredients}}" bindinput="onManualIngredients"/>
+        <button class="add-to-menu-btn" bindtap="submitManual">强制加入菜单！</button>
+      </view>
+    </view>
+  </view>
+</view>

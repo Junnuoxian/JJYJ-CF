@@ -1,12 +1,16 @@
 <view class="menu-container">
   <!-- 顶部 Banner -->
   <view class="banner">
-    <!-- 使用粉紫色调的图片作为占位 -->
     <image class="banner-img" src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=800&q=80" mode="aspectFill"></image>
     <view class="shop-info">
-      <view class="shop-title">巴库大厨的厨房 😈 <text class="share-btn">🔗 邀请库洛米</text></view>
+      <view class="shop-title">巴库大厨的厨房 😈</view>
       <view class="shop-desc">🔈 今天本大爷下厨，你想吃什么随便点！</view>
     </view>
+  </view>
+
+  <!-- 搜索栏入口 -->
+  <view class="search-entry" bindtap="goToSearch">
+    <text>🔍 没找到想吃的？点击去许愿池搜搜看</text>
   </view>
 
   <!-- 菜单区域 -->
@@ -25,20 +29,18 @@
     </scroll-view>
 
     <!-- 右侧菜品 -->
-    <scroll-view class="dish-list" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation bindscroll="onDishScroll">
+    <scroll-view class="dish-list" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation>
       <block wx:for="{{categories}}" wx:key="index" wx:for-index="catIndex" wx:for-item="catItem">
         <view class="category-title" id="cat-{{catIndex}}">{{catItem}}</view>
-        <view class="dish-item" wx:for="{{dishes}}" wx:key="id" wx:if="{{item.categoryIndex === catIndex}}">
+        <view class="dish-item" wx:for="{{displayDishes}}" wx:key="id" wx:if="{{item.categoryIndex === catIndex}}">
           <image class="dish-img" src="{{item.image || 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&q=80'}}" mode="aspectFill"></image>
           <view class="dish-info">
             <view class="dish-name">{{item.name}}</view>
             <view class="dish-desc">{{item.desc}}</view>
             <view class="dish-bottom">
               <view class="dish-price">⏱ {{item.price}}</view>
-              <!-- 食客点菜按钮 -->
-              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role === 'diner'}}">点餐</view>
-              <!-- 主厨编辑按钮 -->
-              <view class="add-btn edit" catchtap="editDish" data-dish="{{item}}" wx:if="{{role === 'chef'}}">编辑</view>
+              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role !== 'chef'}}">点餐</view>
+              <view class="add-btn edit" wx:if="{{role === 'chef'}}">编辑</view>
             </view>
           </view>
         </view>
@@ -46,8 +48,8 @@
     </scroll-view>
   </view>
 
-  <!-- 底部购物车 (仅食客可见) -->
-  <view class="cart-bar" wx:if="{{role === 'diner'}}">
+  <!-- 底部购物车 -->
+  <view class="cart-bar" wx:if="{{role !== 'chef'}}">
     <view class="cart-left">
       <view class="cart-icon">🛍️<view class="badge" wx:if="{{cart.length > 0}}">{{cart.length}}</view></view>
       <view class="cart-info">

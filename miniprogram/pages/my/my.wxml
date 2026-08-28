@@ -1,0 +1,35 @@
+<view class="container my-page">
+  <!-- 未登录状态 -->
+  <view class="unlogin-box kuromi-card" wx:if="{{!userInfo}}">
+    <image class="avatar" src="https://images.unsplash.com/photo-1549488344-c7150c18227b?w=200&q=80" mode="aspectFill"></image>
+    <view class="unlogin-text">尚未登录</view>
+    <button class="login-btn" bindtap="login">微信一键登录</button>
+  </view>
+
+  <!-- 已登录状态 -->
+  <view class="user-box kuromi-card" wx:else>
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <view class="user-info">
+      <view class="nickname">{{userInfo.nickName}}</view>
+      <view class="role-badge">{{role === 'chef' ? '😈 巴库大厨' : '🎀 库洛米食客'}}</view>
+    </view>
+  </view>
+
+  <!-- 情侣绑定状态 -->
+  <view class="bind-box kuromi-card" wx:if="{{userInfo}}">
+    <view class="bind-header">💞 情侣绑定状态</view>
+    <view class="bind-content" wx:if="{{partnerId}}">
+      <text>已绑定另一半</text>
+      <button class="action-btn unbind" bindtap="unbind">解除绑定</button>
+    </view>
+    <view class="bind-content" wx:else>
+      <text class="no-bind-text">单机模式中，快去邀请TA</text>
+      <button class="action-btn invite" open-type="share">发邀请给TA</button>
+    </view>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="bottom-actions" wx:if="{{userInfo}}">
+    <button class="logout-btn" bindtap="logout">退出登录</button>
+  </view>
+</view>

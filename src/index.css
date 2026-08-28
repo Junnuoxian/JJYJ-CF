@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+  --color-kuromi-purple: #C39ED4;
+  --color-kuromi-pink: #F5D6EB;
+  --color-kuromi-dark: #333333;
+  --color-baku-bg: #F9EAF4;
+  --color-theme-bg: #FFF5F6;
+  --color-theme-sidebar: #FFF0F2;
+  --color-theme-red: #F96565;
+  --color-theme-yellow: #FFD15C;
+  --color-theme-text: #4A4A4A;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-theme-bg);
+    color: var(--color-theme-text);
+  }
+}
+
