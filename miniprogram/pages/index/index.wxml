@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container init-page">
-  <image class="kuromi-logo" src="https://images.unsplash.com/photo-1549488344-c7150c18227b?w=300&q=80" mode="aspectFit"></image>
+  <image class="kuromi-logo" src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=300&q=80" mode="aspectFit"></image>
   <view class="title">身份绑定</view>
   <view class="subtitle">干饭小分队，集合！</view>
 

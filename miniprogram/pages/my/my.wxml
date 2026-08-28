@@ -1,7 +1,7 @@
 <view class="container my-page">
   <!-- 未登录状态 -->
   <view class="unlogin-box kuromi-card" wx:if="{{!userInfo}}">
-    <image class="avatar" src="https://images.unsplash.com/photo-1549488344-c7150c18227b?w=200&q=80" mode="aspectFill"></image>
+    <image class="avatar" src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=200&q=80" mode="aspectFill"></image>
     <view class="unlogin-text">尚未登录</view>
     <button class="login-btn" bindtap="login">微信一键登录</button>
   </view>
