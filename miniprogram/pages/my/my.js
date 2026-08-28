@@ -11,7 +11,7 @@ Page({
     this.setData({
       userInfo: wx.getStorageSync('userInfo'),
       role: app.globalData.role || wx.getStorageSync('userRole'),
-      partnerId: wx.getStorageSync('partnerId')
+      partnerId: wx.getStorageSync('partnerId') || (wx.getStorageSync('partner_bound') ? 'bound' : null)
     });
   },
 
@@ -54,12 +54,18 @@ Page({
   unbind() {
     wx.showModal({
       title: '解除绑定',
-      content: '解除绑定后，你们将回到单机模式，确定解除吗？',
+      content: '解除绑定后将回到登录页，确定解除吗？',
       success: (res) => {
         if (res.confirm) {
           wx.removeStorageSync('partnerId');
-          this.setData({ partnerId: null });
+          wx.removeStorageSync('partner_bound');
+          wx.removeStorageSync('userRole');
+          app.globalData.role = null;
+          this.setData({ partnerId: null, role: null });
           wx.showToast({ title: '已解绑', icon: 'success' });
+          setTimeout(() => {
+            wx.reLaunch({ url: '/pages/index/index' });
+          }, 1000);
         }
       }
     });

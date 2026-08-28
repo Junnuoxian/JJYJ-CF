@@ -1,24 +1,43 @@
 <!--index.wxml-->
 <view class="container init-page">
   <image class="kuromi-logo" src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=300&q=80" mode="aspectFit"></image>
-  <view class="title">身份绑定</view>
-  <view class="subtitle">干饭小分队，集合！</view>
+  <view class="title">专属点单系统</view>
 
-  <view class="role-selection">
-    <view class="role-card kuromi-card" bindtap="selectRole" data-role="chef">
-      <view class="icon">😈</view>
-      <view class="role-name">我是巴库大厨</view>
-      <view class="role-desc">负责做饭，生成购物清单</view>
+  <block wx:if="{{step === 'role'}}">
+    <view class="subtitle">干饭小分队，集合！</view>
+    <view class="role-selection">
+      <view class="role-card kuromi-card" bindtap="selectRole" data-role="chef">
+        <view class="icon">😈</view>
+        <view class="role-name">我是巴库大厨</view>
+        <view class="role-desc">负责做饭，生成购物清单</view>
+      </view>
+      <view class="role-card kuromi-card" bindtap="selectRole" data-role="diner">
+        <view class="icon">🎀</view>
+        <view class="role-name">我是库洛米食客</view>
+        <view class="role-desc">负责点菜，花式催饭</view>
+      </view>
     </view>
+  </block>
 
-    <view class="role-card kuromi-card" bindtap="selectRole" data-role="diner">
-      <view class="icon">🎀</view>
-      <view class="role-name">我是库洛米食客</view>
-      <view class="role-desc">负责点菜，花式催饭</view>
+  <block wx:if="{{step === 'pair'}}">
+    <view class="subtitle">绑定你的另一半</view>
+    <view class="pair-section">
+      <view class="my-code-tip">{{selectedRole === 'diner' ? '作为库洛米，你的专属绑定码是：' : '作为巴库，你的专属绑定码是：'}}</view>
+      <view class="my-code">{{myCode}}</view>
+
+      <button class="kuromi-btn copy-btn" bindtap="handleCopy">
+        {{copied ? '已复制邀请口令，快去发给对方吧' : '一键复制微信邀请口令'}}
+      </button>
+
+      <view class="input-section">
+        <view class="input-label">请输入对方的6位绑定码</view>
+        <input class="code-input" type="number" maxlength="6" value="{{pairingCode}}" bindinput="onCodeInput" placeholder="******" />
+        <view class="error-text" wx:if="{{error}}">{{error}}</view>
+      </view>
+
+      <button class="kuromi-btn bind-btn" bindtap="handlePair" disabled="{{pairingCode.length !== 6}}">立即绑定 💞</button>
+      
+      <view class="back-link" bindtap="goBackRole">返回重新选择身份</view>
     </view>
-  </view>
-
-  <button class="kuromi-btn share-btn" open-type="share" wx:if="{{selectedRole}}">邀请另一半加入</button>
-  <button class="kuromi-btn enter-btn" bindtap="enterApp" wx:if="{{selectedRole}}">先自己逛逛</button>
-
+  </block>
 </view>

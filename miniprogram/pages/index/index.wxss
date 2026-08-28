@@ -70,3 +70,86 @@
   color: var(--primary-color);
   border: 2rpx solid var(--primary-color);
 }
+
+/* pair section */
+.pair-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-code-tip {
+  font-size: 28rpx;
+  color: var(--text-sub);
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.my-code {
+  font-size: 60rpx;
+  font-weight: bold;
+  letter-spacing: 10rpx;
+  color: var(--text-main);
+  margin-bottom: 40rpx;
+}
+
+.copy-btn {
+  width: 90% !important;
+  font-size: 26rpx;
+  background-color: #FFF0F2;
+  color: var(--kuromi-pink);
+  margin-bottom: 60rpx;
+  box-shadow: none;
+  border: 2rpx solid var(--kuromi-pink);
+}
+
+.input-section {
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+
+.input-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.code-input {
+  background-color: white;
+  border: 4rpx solid #FFE8E8;
+  border-radius: 20rpx;
+  height: 100rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  letter-spacing: 15rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error-text {
+  color: #FF5C77;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 15rpx;
+}
+
+.bind-btn {
+  width: 100% !important;
+  margin-bottom: 40rpx;
+}
+.bind-btn[disabled] {
+  background-color: #F5F5F5 !important;
+  color: #C4B4B4 !important;
+  box-shadow: none;
+}
+
+.back-link {
+  font-size: 28rpx;
+  color: var(--text-sub);
+  text-decoration: underline;
+  padding: 20rpx;
+}
