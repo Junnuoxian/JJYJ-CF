@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/menu/menu",
+    "pages/order/order",
+    "pages/history/history",
+    "pages/recipe/recipe"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F5D6EB",
+    "navigationBarTitleText": "干饭小分队",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#C39ED4",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/menu/menu",
+        "text": "点菜"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "当前"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

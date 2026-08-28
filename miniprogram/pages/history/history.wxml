@@ -1,0 +1,17 @@
+<view class="container history-page">
+  <view wx:if="{{history.length === 0}}" class="empty-state">
+    <text class="empty-icon">📝</text>
+    <text>还没有干饭记录哦</text>
+  </view>
+
+  <scroll-view scroll-y class="history-list" wx:else>
+    <block wx:for="{{history}}" wx:key="finishTime">
+      <view class="history-item kuromi-card">
+        <view class="item-header">
+          <text class="dish-name">{{item.name}}</text>
+          <text class="date">{{item.dateStr}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

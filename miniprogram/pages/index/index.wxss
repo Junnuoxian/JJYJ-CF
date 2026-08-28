@@ -1,0 +1,54 @@
+.init-page {
+  padding-top: 100rpx;
+}
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: var(--kuromi-dark);
+  margin-bottom: 20rpx;
+}
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 80rpx;
+}
+.role-selection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 40rpx;
+  margin-bottom: 80rpx;
+}
+.role-card {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s;
+}
+.role-card:active {
+  transform: scale(0.98);
+}
+.icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+.role-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.role-desc {
+  font-size: 24rpx;
+  color: #888;
+}
+.share-btn {
+  width: 80% !important;
+  margin-bottom: 30rpx;
+}
+.enter-btn {
+  width: 80% !important;
+  background-color: white;
+  color: var(--kuromi-purple);
+  border: 2rpx solid var(--kuromi-purple);
+}

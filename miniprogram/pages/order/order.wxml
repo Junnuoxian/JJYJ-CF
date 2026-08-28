@@ -1,0 +1,34 @@
+<view class="container order-page">
+  <view wx:if="{{orders.length === 0}}" class="empty-state">
+    <text class="empty-icon">🍽️</text>
+    <text>目前还没有点菜哦</text>
+  </view>
+
+  <scroll-view scroll-y class="order-list" wx:else>
+    <block wx:for="{{orders}}" wx:key="orderTime">
+      <view class="order-card kuromi-card">
+        <view class="order-header">
+          <text class="dish-name">{{item.name}}</text>
+          <text class="status-badge {{item.status}}">{{statusMap[item.status]}}</text>
+        </view>
+        
+        <view class="ingredients-section" wx:if="{{role === 'chef' && item.status === 'pending'}}">
+          <view class="section-title">所需食材：</view>
+          <view class="ingredients-list">
+            <text class="ingredient" wx:for="{{item.ingredients}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+
+        <view class="action-bar">
+          <!-- 食客操作 -->
+          <button class="action-btn cuican-btn" wx:if="{{role === 'diner' && item.status === 'cooking'}}" bindtap="cuiCan">🛎️ 催饭</button>
+          <button class="action-btn finish-btn" wx:if="{{role === 'diner' && item.status === 'done'}}" bindtap="finishOrder" data-index="{{index}}">吃光擦嘴</button>
+
+          <!-- 主厨操作 -->
+          <button class="action-btn primary-btn" wx:if="{{role === 'chef' && item.status === 'pending'}}" bindtap="updateStatus" data-index="{{index}}" data-status="cooking">开始做饭</button>
+          <button class="action-btn primary-btn" wx:if="{{role === 'chef' && item.status === 'cooking'}}" bindtap="updateStatus" data-index="{{index}}" data-status="done">呼叫开饭！</button>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

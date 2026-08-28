@@ -1,0 +1,35 @@
+/**app.wxss**/
+page {
+  background-color: #FAFAFA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  /* 库洛米主题色 */
+  --kuromi-purple: #C39ED4; 
+  --kuromi-dark: #333333;
+  --kuromi-pink: #F5D6EB;
+  --bg-color: #FAFAFA;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20rpx;
+} 
+
+.kuromi-btn {
+  background-color: var(--kuromi-purple);
+  color: white;
+  border-radius: 40rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 12rpx rgba(195, 158, 212, 0.4);
+}
+
+.kuromi-card {
+  background: white;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  border: 2rpx solid var(--kuromi-pink);
+}

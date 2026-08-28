@@ -1,0 +1,20 @@
+<view class="container menu-page">
+  <view class="header">
+    <text class="greeting">想吃点什么呀？</text>
+  </view>
+
+  <scroll-view scroll-y class="dish-list">
+    <block wx:for="{{dishes}}" wx:key="id">
+      <view class="dish-item kuromi-card">
+        <view class="dish-info">
+          <view class="dish-name">{{item.name}}</view>
+          <view class="dish-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+        <button class="add-btn" catchtap="orderDish" data-dish="{{item}}" wx:if="{{role === 'diner'}}">点菜</button>
+        <button class="add-btn edit-btn" catchtap="editDish" data-dish="{{item}}" wx:if="{{role === 'chef'}}">编辑</button>
+      </view>
+    </block>
+  </scroll-view>
+</view>

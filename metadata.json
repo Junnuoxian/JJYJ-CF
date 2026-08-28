@@ -1,0 +1,8 @@
+{
+  "name": "情侣互动菜单",
+  "description": "一款专为情侣设计的点菜与购物清单生成移动端Web应用。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

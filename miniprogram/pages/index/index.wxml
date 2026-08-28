@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container init-page">
+  <view class="title">身份绑定</view>
+  <view class="subtitle">干饭小分队，集合！</view>
+
+  <view class="role-selection">
+    <view class="role-card kuromi-card" bindtap="selectRole" data-role="chef">
+      <view class="icon">👩‍🍳</view>
+      <view class="role-name">我是大厨</view>
+      <view class="role-desc">负责做饭，生成购物清单</view>
+    </view>
+
+    <view class="role-card kuromi-card" bindtap="selectRole" data-role="diner">
+      <view class="icon">😋</view>
+      <view class="role-name">我是干饭人</view>
+      <view class="role-desc">负责点菜，花式催饭</view>
+    </view>
+  </view>
+
+  <button class="kuromi-btn share-btn" open-type="share" wx:if="{{selectedRole}}">邀请另一半加入</button>
+  <button class="kuromi-btn enter-btn" bindtap="enterApp" wx:if="{{selectedRole}}">先自己逛逛</button>
+
+</view>
