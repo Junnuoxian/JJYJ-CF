@@ -1,0 +1,28 @@
+.recipe-page {
+  padding: 30rpx;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.recipe-card {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  text-align: center;
+  background: white;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  border: 2rpx solid var(--kuromi-pink);
+}
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: var(--text-main);
+}
+.desc {
+  font-size: 26rpx;
+  color: #666;
+}

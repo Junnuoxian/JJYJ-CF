@@ -2,34 +2,16 @@
 page {
   background-color: #FAFAFA;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
-    sans-serif;
-  /* 库洛米主题色 */
-  --kuromi-purple: #C39ED4; 
-  --kuromi-dark: #333333;
-  --kuromi-pink: #F5D6EB;
+    Segoe UI, Arial, Roboto, 'PingFang SC', sans-serif;
+  --primary-color: #C39ED4; /* 库洛米紫 */
+  --kuromi-pink: #F5D6EB; /* 库洛米粉 */
+  --text-main: #333333;
+  --text-sub: #888888;
   --bg-color: #FAFAFA;
+  --sidebar-bg: #F9EAF4; /* 浅粉色侧边栏 */
 }
-
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   box-sizing: border-box;
-  padding: 20rpx;
-} 
-
-.kuromi-btn {
-  background-color: var(--kuromi-purple);
-  color: white;
-  border-radius: 40rpx;
-  font-weight: bold;
-  box-shadow: 0 4rpx 12rpx rgba(195, 158, 212, 0.4);
-}
-
-.kuromi-card {
-  background: white;
-  border-radius: 24rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
-  border: 2rpx solid var(--kuromi-pink);
 }

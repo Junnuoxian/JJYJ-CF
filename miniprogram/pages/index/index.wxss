@@ -1,23 +1,29 @@
 .init-page {
-  padding-top: 100rpx;
+  padding-top: 60rpx;
+}
+.kuromi-logo {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  margin-bottom: 40rpx;
 }
 .title {
   font-size: 48rpx;
   font-weight: bold;
-  color: var(--kuromi-dark);
+  color: var(--text-main);
   margin-bottom: 20rpx;
 }
 .subtitle {
   font-size: 28rpx;
-  color: #666;
-  margin-bottom: 80rpx;
+  color: var(--text-sub);
+  margin-bottom: 60rpx;
 }
 .role-selection {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 40rpx;
-  margin-bottom: 80rpx;
+  gap: 30rpx;
+  margin-bottom: 60rpx;
 }
 .role-card {
   padding: 40rpx;
@@ -25,6 +31,10 @@
   flex-direction: column;
   align-items: center;
   transition: all 0.2s;
+  background: white;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  border: 2rpx solid var(--kuromi-pink);
 }
 .role-card:active {
   transform: scale(0.98);
@@ -37,10 +47,18 @@
   font-size: 36rpx;
   font-weight: bold;
   margin-bottom: 10rpx;
+  color: var(--text-main);
 }
 .role-desc {
   font-size: 24rpx;
-  color: #888;
+  color: var(--text-sub);
+}
+.kuromi-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 40rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 12rpx rgba(195, 158, 212, 0.4);
 }
 .share-btn {
   width: 80% !important;
@@ -49,6 +67,6 @@
 .enter-btn {
   width: 80% !important;
   background-color: white;
-  color: var(--kuromi-purple);
-  border: 2rpx solid var(--kuromi-purple);
+  color: var(--primary-color);
+  border: 2rpx solid var(--primary-color);
 }

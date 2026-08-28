@@ -1,0 +1,6 @@
+<view class="container recipe-page">
+  <view class="recipe-card kuromi-card">
+    <view class="title">正在准备开发做菜指导页面...</view>
+    <view class="desc">这里以后会显示具体的烹饪步骤和图文教程哦！</view>
+  </view>
+</view>

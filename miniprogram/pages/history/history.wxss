@@ -21,6 +21,10 @@
 .history-item {
   padding: 30rpx;
   margin-bottom: 20rpx;
+  background: white;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  border: 2rpx solid var(--kuromi-pink);
 }
 .item-header {
   display: flex;
@@ -30,7 +34,7 @@
 .dish-name {
   font-size: 32rpx;
   font-weight: bold;
-  color: var(--kuromi-dark);
+  color: var(--text-main);
 }
 .date {
   font-size: 24rpx;

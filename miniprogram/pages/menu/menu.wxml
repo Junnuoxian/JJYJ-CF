@@ -1,20 +1,62 @@
-<view class="container menu-page">
-  <view class="header">
-    <text class="greeting">想吃点什么呀？</text>
+<view class="menu-container">
+  <!-- 顶部 Banner -->
+  <view class="banner">
+    <!-- 使用粉紫色调的图片作为占位 -->
+    <image class="banner-img" src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=800&q=80" mode="aspectFill"></image>
+    <view class="shop-info">
+      <view class="shop-title">巴库大厨的厨房 😈 <text class="share-btn">🔗 邀请库洛米</text></view>
+      <view class="shop-desc">🔈 今天本大爷下厨，你想吃什么随便点！</view>
+    </view>
   </view>
 
-  <scroll-view scroll-y class="dish-list">
-    <block wx:for="{{dishes}}" wx:key="id">
-      <view class="dish-item kuromi-card">
-        <view class="dish-info">
-          <view class="dish-name">{{item.name}}</view>
-          <view class="dish-tags">
-            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+  <!-- 菜单区域 -->
+  <view class="menu-body">
+    <!-- 左侧分类 -->
+    <scroll-view class="sidebar" scroll-y>
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="index"
+        class="category-item {{activeCategory === index ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+
+    <!-- 右侧菜品 -->
+    <scroll-view class="dish-list" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation bindscroll="onDishScroll">
+      <block wx:for="{{categories}}" wx:key="index" wx:for-index="catIndex" wx:for-item="catItem">
+        <view class="category-title" id="cat-{{catIndex}}">{{catItem}}</view>
+        <view class="dish-item" wx:for="{{dishes}}" wx:key="id" wx:if="{{item.categoryIndex === catIndex}}">
+          <image class="dish-img" src="{{item.image || 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&q=80'}}" mode="aspectFill"></image>
+          <view class="dish-info">
+            <view class="dish-name">{{item.name}}</view>
+            <view class="dish-desc">{{item.desc}}</view>
+            <view class="dish-bottom">
+              <view class="dish-price">⏱ {{item.price}}</view>
+              <!-- 食客点菜按钮 -->
+              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role === 'diner'}}">点餐</view>
+              <!-- 主厨编辑按钮 -->
+              <view class="add-btn edit" catchtap="editDish" data-dish="{{item}}" wx:if="{{role === 'chef'}}">编辑</view>
+            </view>
           </view>
         </view>
-        <button class="add-btn" catchtap="orderDish" data-dish="{{item}}" wx:if="{{role === 'diner'}}">点菜</button>
-        <button class="add-btn edit-btn" catchtap="editDish" data-dish="{{item}}" wx:if="{{role === 'chef'}}">编辑</button>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 底部购物车 (仅食客可见) -->
+  <view class="cart-bar" wx:if="{{role === 'diner'}}">
+    <view class="cart-left">
+      <view class="cart-icon">🛍️<view class="badge" wx:if="{{cart.length > 0}}">{{cart.length}}</view></view>
+      <view class="cart-info">
+        <view class="cart-price">共 {{cart.length}} 份</view>
+        <view class="cart-sub">巴库正在等待接单</view>
       </view>
-    </block>
-  </scroll-view>
+    </view>
+    <view class="cart-right {{cart.length > 0 ? 'active' : ''}}" bindtap="checkout">
+      去结账
+    </view>
+  </view>
 </view>

@@ -1,18 +1,19 @@
 <!--index.wxml-->
 <view class="container init-page">
+  <image class="kuromi-logo" src="https://images.unsplash.com/photo-1549488344-c7150c18227b?w=300&q=80" mode="aspectFit"></image>
   <view class="title">身份绑定</view>
   <view class="subtitle">干饭小分队，集合！</view>
 
   <view class="role-selection">
     <view class="role-card kuromi-card" bindtap="selectRole" data-role="chef">
-      <view class="icon">👩‍🍳</view>
-      <view class="role-name">我是大厨</view>
+      <view class="icon">😈</view>
+      <view class="role-name">我是巴库大厨</view>
       <view class="role-desc">负责做饭，生成购物清单</view>
     </view>
 
     <view class="role-card kuromi-card" bindtap="selectRole" data-role="diner">
-      <view class="icon">😋</view>
-      <view class="role-name">我是干饭人</view>
+      <view class="icon">🎀</view>
+      <view class="role-name">我是库洛米食客</view>
       <view class="role-desc">负责点菜，花式催饭</view>
     </view>
   </view>
