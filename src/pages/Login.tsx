@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStore } from '../Store';
-import { Utensils, ChefHat, Link } from 'lucide-react';
+import { Utensils, ChefHat, Link, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Login() {
@@ -9,8 +9,18 @@ export default function Login() {
   const [pairingCode, setPairingCode] = useState('');
   const [step, setStep] = useState<'role' | 'pair'>('role');
   const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [myCode, setMyCode] = useState('');
 
-  const myCode = '5200'; // Fixed generated code for local demo purposes
+  // Generate unique invite code on mount
+  useEffect(() => {
+    let savedCode = localStorage.getItem('my_invite_code');
+    if (!savedCode) {
+      savedCode = Math.floor(100000 + Math.random() * 900000).toString();
+      localStorage.setItem('my_invite_code', savedCode);
+    }
+    setMyCode(savedCode);
+  }, []);
 
   const handleSelectRole = (role: 'kuromi' | 'baku') => {
     setSelectedRole(role);
@@ -24,6 +34,14 @@ export default function Login() {
       setError('配对码输入错误，请重新输入');
       setTimeout(() => setError(''), 3000);
     }
+  };
+
+  const handleCopy = () => {
+    const roleName = selectedRole === 'kuromi' ? '库洛米' : '巴库';
+    const text = `我是${roleName}，快来和我绑定专属点单系统！我的专属邀请码是：${myCode}，复制这条消息打开系统即可绑定~`;
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
   };
 
   return (

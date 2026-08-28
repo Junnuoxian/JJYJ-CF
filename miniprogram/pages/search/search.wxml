@@ -22,7 +22,7 @@
       <view class="result-title">找到啦！要把它加入你们的菜单吗？</view>
       <view class="dish-card kuromi-card">
         <view class="d-name">{{searchResult.name}}</view>
-        <view class="d-cat">分类：{{searchResult.category}}</view>
+        <view class="d-cat">分类：{{searchResult.category === 'home' ? '大厨拿手菜' : searchResult.category}}</view>
         <view class="d-ing">食材：{{searchResult.ingredients}}</view>
         <button class="add-to-menu-btn" bindtap="addToMyMenu">加入专属菜单</button>
       </view>
@@ -35,10 +35,13 @@
       <view class="manual-form kuromi-card">
         <view class="form-title">直接手动录入吧！</view>
         <input class="form-input" placeholder="菜名 (例如: 黯然销魂饭)" value="{{manualName}}" bindinput="onManualName"/>
-        <picker class="form-picker" bindchange="onCategoryChange" value="{{catIndex}}" range="{{categories}}">
-          <view class="picker-text">分类: {{categories[catIndex]}}</view>
+        
+        <picker class="form-picker" bindchange="onCategoryChange" value="{{catIndex}}" range="{{categories}}" range-key="name">
+          <view class="picker-text">分类: {{categories[catIndex].name}}</view>
         </picker>
+
         <input class="form-input" placeholder="所需食材 (用逗号隔开)" value="{{manualIngredients}}" bindinput="onManualIngredients"/>
+        
         <button class="add-to-menu-btn" bindtap="submitManual">强制加入菜单！</button>
       </view>
     </view>

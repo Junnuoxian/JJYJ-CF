@@ -19,27 +19,27 @@
     <scroll-view class="sidebar" scroll-y>
       <view 
         wx:for="{{categories}}" 
-        wx:key="index"
-        class="category-item {{activeCategory === index ? 'active' : ''}}"
+        wx:key="id"
+        class="category-item {{activeCategory === item.id ? 'active' : ''}}"
         bindtap="switchCategory"
-        data-index="{{index}}"
+        data-id="{{item.id}}"
       >
-        {{item}}
+        {{item.name}} {{item.icon}}
       </view>
     </scroll-view>
 
     <!-- 右侧菜品 -->
     <scroll-view class="dish-list" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation>
-      <block wx:for="{{categories}}" wx:key="index" wx:for-index="catIndex" wx:for-item="catItem">
-        <view class="category-title" id="cat-{{catIndex}}">{{catItem}}</view>
-        <view class="dish-item" wx:for="{{displayDishes}}" wx:key="id" wx:if="{{item.categoryIndex === catIndex}}">
+      <block wx:for="{{categories}}" wx:key="id" wx:for-item="catItem">
+        <view class="category-title" id="cat-{{catItem.id}}">{{catItem.name}} {{catItem.icon}}</view>
+        <view class="dish-item" wx:for="{{displayDishes}}" wx:key="id" wx:if="{{item.category === catItem.id}}">
           <image class="dish-img" src="{{item.image || 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&q=80'}}" mode="aspectFill"></image>
           <view class="dish-info">
             <view class="dish-name">{{item.name}}</view>
             <view class="dish-desc">{{item.desc}}</view>
             <view class="dish-bottom">
-              <view class="dish-price">⏱ {{item.price}}</view>
-              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role !== 'chef'}}">点餐</view>
+              <view class="dish-price">¥ {{item.price}}</view>
+              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role !== 'chef'}}">{{item.buttonText || '点餐'}}</view>
               <view class="add-btn edit" wx:if="{{role === 'chef'}}">编辑</view>
             </view>
           </view>
@@ -53,8 +53,8 @@
     <view class="cart-left">
       <view class="cart-icon">🛍️<view class="badge" wx:if="{{cart.length > 0}}">{{cart.length}}</view></view>
       <view class="cart-info">
-        <view class="cart-price">共 {{cart.length}} 份</view>
-        <view class="cart-sub">巴库正在等待接单</view>
+        <view class="cart-price">¥ {{cartTotal}}</view>
+        <view class="cart-sub">共 {{cart.length}} 份，巴库正在等待接单</view>
       </view>
     </view>
     <view class="cart-right {{cart.length > 0 ? 'active' : ''}}" bindtap="checkout">

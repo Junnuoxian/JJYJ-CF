@@ -1,32 +1,41 @@
 <!--index.wxml-->
 <view class="container init-page">
-  <image class="kuromi-logo" src="https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=300&q=80" mode="aspectFit"></image>
-  <view class="title">专属点单系统</view>
-
   <block wx:if="{{step === 'role'}}">
-    <view class="subtitle">干饭小分队，集合！</view>
+    <view class="text-center">
+      <view class="top-icon-circle">🍱</view>
+      <view class="title">专属点单系统</view>
+      <view class="subtitle">请选择你的身份</view>
+    </view>
+
     <view class="role-selection">
-      <view class="role-card kuromi-card" bindtap="selectRole" data-role="chef">
-        <view class="icon">😈</view>
-        <view class="role-name">我是巴库大厨</view>
-        <view class="role-desc">负责做饭，生成购物清单</view>
+      <view class="role-card" bindtap="selectRole" data-role="diner">
+        <view class="icon-circle kuromi-bg">🎀</view>
+        <view class="text-left">
+          <view class="role-name">我是库洛米</view>
+          <view class="role-desc">负责点菜和催单，我是干饭王！</view>
+        </view>
       </view>
-      <view class="role-card kuromi-card" bindtap="selectRole" data-role="diner">
-        <view class="icon">🎀</view>
-        <view class="role-name">我是库洛米食客</view>
-        <view class="role-desc">负责点菜，花式催饭</view>
+
+      <view class="role-card" bindtap="selectRole" data-role="chef">
+        <view class="icon-circle baku-bg">😈</view>
+        <view class="text-left">
+          <view class="role-name">我是巴库</view>
+          <view class="role-desc">负责做饭和买菜，我是大厨！</view>
+        </view>
       </view>
     </view>
   </block>
 
   <block wx:if="{{step === 'pair'}}">
-    <view class="subtitle">绑定你的另一半</view>
     <view class="pair-section">
+      <view class="top-icon-circle pair-icon {{selectedRole === 'diner' ? 'kuromi-text' : 'baku-text'}}">🔗</view>
+      
+      <view class="title">绑定你的另一半</view>
       <view class="my-code-tip">{{selectedRole === 'diner' ? '作为库洛米，你的专属绑定码是：' : '作为巴库，你的专属绑定码是：'}}</view>
       <view class="my-code">{{myCode}}</view>
 
-      <button class="kuromi-btn copy-btn" bindtap="handleCopy">
-        {{copied ? '已复制邀请口令，快去发给对方吧' : '一键复制微信邀请口令'}}
+      <button class="copy-btn {{copied ? 'copied' : ''}}" bindtap="handleCopy">
+        {{copied ? '✓ 已复制邀请口令，快去微信发给对方吧' : '🔗 一键复制微信邀请口令'}}
       </button>
 
       <view class="input-section">
@@ -35,7 +44,7 @@
         <view class="error-text" wx:if="{{error}}">{{error}}</view>
       </view>
 
-      <button class="kuromi-btn bind-btn" bindtap="handlePair" disabled="{{pairingCode.length !== 6}}">立即绑定 💞</button>
+      <button class="bind-btn {{selectedRole === 'diner' ? 'kuromi-btn' : 'baku-btn'}}" bindtap="handlePair" disabled="{{pairingCode.length !== 6}}">立即绑定 💞</button>
       
       <view class="back-link" bindtap="goBackRole">返回重新选择身份</view>
     </view>
