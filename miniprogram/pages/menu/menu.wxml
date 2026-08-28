@@ -1,50 +1,87 @@
 <view class="menu-container">
-  <!-- 顶部 Banner -->
-  <view class="banner">
-    <image class="banner-img" src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=800&q=80" mode="aspectFill"></image>
-    <view class="shop-info">
-      <view class="shop-title">巴库大厨的厨房 😈</view>
-      <view class="shop-desc">🔈 今天本大爷下厨，你想吃什么随便点！</view>
-    </view>
+  <!-- Top Banner (Illustration Placeholder) -->
+  <view class="top-banner">
+    <image class="banner-bg" src="/assets/menu-bg.svg" mode="aspectFill"></image>
+    <view class="banner-curve"></view>
   </view>
 
-  <!-- 搜索栏入口 -->
-  <view class="search-entry" bindtap="goToSearch">
-    <text>🔍 没找到想吃的？点击去许愿池搜搜看</text>
-  </view>
-
-  <!-- 菜单区域 -->
-  <view class="menu-body">
-    <!-- 左侧分类 -->
+  <!-- Main Content Area -->
+  <view class="menu-content">
+    
+    <!-- Left Sidebar -->
     <scroll-view class="sidebar" scroll-y>
-      <view 
-        wx:for="{{categories}}" 
-        wx:key="id"
-        class="category-item {{activeCategory === item.id ? 'active' : ''}}"
-        bindtap="switchCategory"
-        data-id="{{item.id}}"
-      >
-        {{item.name}} {{item.icon}}
+      <view class="sidebar-inner">
+        <view 
+          wx:for="{{categories}}" 
+          wx:key="id"
+          class="category-item {{activeCategory === item.id ? 'active' : ''}}"
+          bindtap="switchCategory"
+          data-id="{{item.id}}"
+        >
+          <image class="cat-icon {{activeCategory === item.id ? '' : 'inactive-icon'}}" src="{{'/assets/icon-' + item.id + '.svg'}}"></image>
+          <text class="cat-text">{{item.name}}</text>
+        </view>
+        
+        <!-- Cute illustration placeholder at bottom -->
+        <view class="sidebar-bottom">
+          <view class="sparkle-icon">✨</view>
+        </view>
       </view>
     </scroll-view>
 
-    <!-- 右侧菜品 -->
-    <scroll-view class="dish-list" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation>
-      <block wx:for="{{categories}}" wx:key="id" wx:for-item="catItem">
-        <view class="category-title" id="cat-{{catItem.id}}">{{catItem.name}} {{catItem.icon}}</view>
-        <view class="dish-item" wx:for="{{displayDishes}}" wx:key="id" wx:if="{{item.category === catItem.id}}">
-          <image class="dish-img" src="{{item.image || 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&q=80'}}" mode="aspectFill"></image>
-          <view class="dish-info">
-            <view class="dish-name">{{item.name}}</view>
-            <view class="dish-desc">{{item.desc}}</view>
-            <view class="dish-bottom">
-              <view class="dish-price">¥ {{item.price}}</view>
-              <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role !== 'chef'}}">{{item.buttonText || '点餐'}}</view>
-              <view class="add-btn edit" wx:if="{{role === 'chef'}}">编辑</view>
+    <!-- Right Content -->
+    <scroll-view class="dish-list-scroll" scroll-y scroll-into-view="cat-{{activeCategory}}" scroll-with-animation>
+      <view class="dish-list-inner">
+        
+        <!-- Floating Search Bar -->
+        <view class="search-bar" bindtap="goToSearch">
+          <text class="search-icon">🔍</text>
+          <text class="search-placeholder">想吃点什么？去许愿池搜索...</text>
+        </view>
+
+        <!-- Section Header -->
+        <view class="section-header">
+          <view class="header-left">
+            <image class="avatar" src="/assets/avatar-kuromi.svg"></image>
+            <view class="header-text">
+              <view class="header-title">厨主推荐 ✨</view>
+              <view class="header-subtitle">Kuromi和Baku的美味食光</view>
             </view>
           </view>
+          <view class="new-tag">
+            <text class="tag-icon">📢</text> 今日上新
+          </view>
         </view>
-      </block>
+
+        <!-- Dish List -->
+        <block wx:for="{{categories}}" wx:key="id" wx:for-item="catItem">
+          <view class="category-title" id="cat-{{catItem.id}}">{{catItem.name}} {{catItem.icon}}</view>
+          
+          <view class="dish-item" wx:for="{{displayDishes}}" wx:key="id" wx:if="{{item.category === catItem.id}}">
+            <image class="dish-img" src="{{item.image || 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&q=80'}}" mode="aspectFill"></image>
+            <view class="dish-info">
+              <view class="dish-top">
+                <view class="dish-tag">
+                  {{item.category === 'hot' ? '必吃 🔥' : item.category === 'home' ? '拿手 🔥' : item.category === 'meat' ? '吃肉 🥩' : item.category === 'veg' ? '解腻 🥬' : item.category === 'soup' ? '碳水 🥣' : item.category === 'sea' ? '海鲜 🦐' : item.category === 'snack' ? '解馋 🍟' : '甜甜 🍰'}}
+                </view>
+                <view class="dish-name">{{item.name}}</view>
+                <view class="dish-desc">{{item.desc}}</view>
+              </view>
+              
+              <view class="dashed-line"></view>
+
+              <view class="dish-bottom">
+                <view class="dish-price"><text class="price-symbol">¥</text> {{item.price}}</view>
+                <view class="add-btn" catchtap="addToCart" data-dish="{{item}}" wx:if="{{role !== 'chef'}}">{{item.buttonText || '选它'}}</view>
+                <view class="add-btn edit" wx:if="{{role === 'chef'}}">编辑</view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- Bottom padding for cart -->
+        <view style="height: 140rpx;"></view>
+      </view>
     </scroll-view>
   </view>
 
